@@ -1,0 +1,75 @@
+<label>Server Name</label>
+<!-- <input
+  type="text"
+  class="form-control"
+  (input)="onUpdateServerName($event)"> -->
+  <input
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName">
+
+  <!-- <p>{{serverName}}</p><p>warningalert works!</p> -->
+<button class="btn btn-primary"
+[disabled]="!allowNewServer"
+(click)="onCreateServer()">Add Server</button>
+<hr>
+<!-- <p>HTML Element Property binding to our own TypeScript property! Can interact with the DOM,
+  to change properties at runtime. Can also bind to directives and components.
+</p> -->
+<!-- {{allowNewServer}} -->
+<!-- <p [innerText]="allowNewServer"></p> -->
+<!-- <p>{{serverCreationStatus}}</p> -->
+<p *ngIf="serverCreated else noServer">Server was created, server name is {{ serverName }}</p>
+<ng-template #noServer>
+  <p>No server was created!</p>
+</ng-template>
+<app-server *ngFor="let server of servers"></app-server>
+
+
+<label>UserName</label>
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="userName">
+
+  <p>{{userName}}</p>
+<hr>
+  <button class="btn btn-primary"
+[disabled]="userName === ''"
+(click)="userName = ''">Reset User</button>
+<!-- === checks a value
+and = assigns a value -->
+<hr>
+
+<button class="btn btn-primary"
+[disabled]="false"
+(click)="onButtonClick()">Display details</button>
+
+<hr>
+<p *ngIf="toggleParagraphDisplay">Secret password = tuna!</p>
+
+<p *ngFor="let button1 of buttons"></p>
+
+<hr>
+
+<p [ngStyle]="{backgroundColor: getColor()}"
+[ngClass]="{increment}"
+>{{increment}}</p>
+
+<p>Max's Solution</p>
+<div>
+<!-- <button class="btn btn-primary" (click)="showSecret = !showSecret">Display details</button> -->
+<button class="btn btn-primary" (click)="onToggleDisplay()">Display details</button>
+<p *ngIf="showSecret">Secret password = luck!></p>
+<!-- <div *ngFor="let logItem of log"
+[ngStyle]="{backgroundColor: logItem >= 5 ? 'blue' : 'transparent'}"
+[ngClass]="{'white-text': logItem >= 5}"
+>{{logItem}}</div> -->
+
+
+<div *ngFor="let logItem of log; let i = index"
+[ngStyle]="{backgroundColor: i >= 4 ? 'blue' : 'transparent'}"
+[ngClass]="{'white-text': i >= 4}"
+>{{logItem}}</div>
+</div>
+
